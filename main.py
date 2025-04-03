@@ -1,5 +1,6 @@
 import customtkinter as Ctk
 from PIL import Image
+from utils import get_file_path
 
 Ctk.set_appearance_mode("light")
 
@@ -16,9 +17,9 @@ class App(Ctk.CTk):
         screen_height = self.winfo_screenheight()     
         
         try:
-            self.iconbitmap("icon.ico")  # Para Windows (.ico)
+            self.iconbitmap(get_file_path("res/icon.ico"))  # Para Windows (.ico)
         except:
-            icon_image = Ctk.CTkImage(Image.open("res/icon.png"), size=(32, 32))  # Para Linux/macOS (.png)
+            icon_image = Ctk.CTkImage(Image.open(get_file_path("res/icon.png")), size=(32, 32))  # Para Linux/macOS (.png)
             self.iconphoto(True, icon_image._photo_image)  # Define o ícone 
     
         # Centraliza a janela
@@ -47,7 +48,7 @@ class App(Ctk.CTk):
         title_frame.grid(row=0, column=0, padx=30, pady=(25, 0), sticky="w")
 
         # Ícone
-        icon_image = Ctk.CTkImage(light_image=Image.open("res/temperatura.png"), size=(30, 30))
+        icon_image = Ctk.CTkImage(light_image=Image.open(get_file_path("res/temperatura.png")), size=(30, 30))
         icon_label = Ctk.CTkLabel(title_frame, image=icon_image, text="")
         icon_label.pack(side="left", padx=(0, 10))
 
